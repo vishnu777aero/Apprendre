@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "Apprendre",
+    "description": "An extension that helps your learning Fraçais facile",
+    "version": "1.0",
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "hello_extensions.png"
+    }
+  }
