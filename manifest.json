@@ -4,15 +4,18 @@
     "description": "An extension that helps your learning Fraçais facile",
     "version": "1.0",
     "action": {
-      "default_popup": "index.html",
       "default_icon": "icons/hello_extensions.png"
     },
     "content_scripts": [
         {
           "js": ["scripts/content.js"],
           "matches": [
-            "*"
+            "*://*/*"
           ]
         }
-      ]
+      ],
+      "background": {
+        "service_worker": "scripts/background.js"
+      },
+      "permissions": ["activeTab", "scripting"]
   }
