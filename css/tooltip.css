@@ -1,6 +1,7 @@
 div#apprendre-tooltip {
     display: none;
     position: absolute;
+    color: black !important;
     background-color: #fff;
     border: 1px solid #ccc;
     padding: 5px;
