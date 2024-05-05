@@ -11,7 +11,8 @@
           "js": ["scripts/content.js"],
           "matches": [
             "*://*/*"
-          ]
+          ],
+          "css": ["css/tooltip.css"]
         }
       ],
       "background": {

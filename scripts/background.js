@@ -1,15 +1,5 @@
-/* chrome.runtime.onInstalled.addListener(() => {
-    chrome.action.setBadgeText({
-      text: "OFF",
-    });
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (changeInfo.status === 'complete') {
+        chrome.tabs.insertCSS(tabId, {file: 'css/tooltip.css'});
+    }
 });
-
-chrome.action.onClicked.addListener(async (tab) => {
-    const prevState = await chrome.action.getBadgeText({ tabId: tab.id });
-    const nextState = prevState === 'ON' ? 'OFF' : 'ON';
-
-    await chrome.action.setBadgeText({
-        tabId: tab.id,
-        text: nextState,
-    });
-}); */
