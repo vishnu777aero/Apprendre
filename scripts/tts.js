@@ -1,10 +1,10 @@
 tooltip.addEventListener('mouseup', (event) => {
     event.stopPropagation();
-    const { translatedText, targetLanguage } = state;
+    const { translatedText, selectedText, targetLanguage } = state;
 
-    console.log(state);
-
-    if (translatedText !== '' && targetLanguage === 'fr') {
-      chrome.runtime.sendMessage({ action: 'speak', text: translatedText, lang: 'fr-FR' });
+    if ((translatedText !== '' && targetLanguage === 'fr') || (targetLanguage === 'en' && selectedText !== '')) {
+        const text = targetLanguage === 'fr' ? translatedText : selectedText;
+        
+        chrome.runtime.sendMessage({ action: 'speak', text, lang: 'fr-FR' });
     }
 })
