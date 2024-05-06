@@ -9,4 +9,5 @@ div#apprendre-tooltip {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 9999;
     cursor: pointer;
+    font-family: cursive;
 }
