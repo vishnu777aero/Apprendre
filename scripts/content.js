@@ -5,8 +5,15 @@ const tooltip = document.createElement('div');
 tooltip.id = tooltipId;
 document.body.appendChild(tooltip);
 
+const state = {
+    selectedText: "",
+    targetLanguage: "",
+    translatedText: "",
+};
+
 document.addEventListener('mouseup', async (event) => {
     const selectedText = window.getSelection().toString().trim();
+    state.selectedText = selectedText;
     
     if(selectedText !== '') {
         const mouseX = event.pageX;
@@ -19,9 +26,11 @@ document.addEventListener('mouseup', async (event) => {
         tooltip.style.display = 'block';
 
         const detectionResponse = await detectLanguage(selectedText);
-        const targetLanguage = findTargetLanguage({ detectedLanguage: detectionResponse[0]?.language });
-        const translationResponse = await translate({ text: selectedText, target: targetLanguage });
-        tooltip.innerText = translationResponse.translatedText;
+        state.targetLanguage = findTargetLanguage({ detectedLanguage: detectionResponse[0]?.language });
+        const { targetLanguage } = state;
+        const { translatedText } = await translate({ text: selectedText, target: targetLanguage });
+        state.translatedText = translatedText;
+        tooltip.innerText = translatedText;
     }
 });
 
