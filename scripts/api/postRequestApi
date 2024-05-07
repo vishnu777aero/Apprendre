@@ -1,0 +1,40 @@
+const detectLanguageApi = async (text) => {
+    return fetch("http://localhost:5000/detect", {
+	    method: "POST",
+	    body: JSON.stringify({
+		q: text,
+		api_key: ""
+	    }),
+	    headers: { "Content-Type": "application/json" }
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("translation error")
+        }
+    }).catch((e) => {
+        console.log(e);
+    });
+}
+
+const translateApi = async ({ text, target }) => {
+    return fetch("http://localhost:5000/translate", {
+	method: "POST",
+	body: JSON.stringify({
+		q: text,
+		source: "auto",
+		target,
+		format: "text",
+		api_key: ""
+	}),
+	headers: { "Content-Type": "application/json" }
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("translation error")
+        }
+    }).catch((e) => {
+        console.log(e);
+    });
+}
