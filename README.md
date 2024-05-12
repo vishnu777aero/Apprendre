@@ -12,4 +12,4 @@ A chrome extension that helps you learn << le français >> 😇
 8. Confirm in Docker that your container is running, or go to http://localhost:5000 to check translation UI
 9. Reload Chrome, and select any text to see if the on the go translation feature works
 
-
+Special thanks to [Madhu Mohan C] for creating the beautiful icons used in this app. You can check out more of his work on [LinkedIn](https://www.linkedin.com/in/madhu-mohan-c/). Your creativity and talent have greatly enhanced the visual appeal of this project!

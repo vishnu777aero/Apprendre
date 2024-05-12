@@ -2,9 +2,12 @@
     "manifest_version": 3,
     "name": "Apprendre",
     "description": "An extension that helps your learning Fraçais facile",
-    "version": "1.1",
-    "action": {
-      "default_icon": "icons/hello_extensions.png"
+    "version": "1.2",
+    "icons": {
+      "16": "icons/logo-16px.png",
+      "32": "icons/logo-32px.png",
+      "48": "icons/logo-48px.png",
+      "128": "icons/logo-128px.png"
     },
     "content_scripts": [
         {
