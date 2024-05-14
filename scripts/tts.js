@@ -7,4 +7,6 @@ tooltip.addEventListener('mouseup', (event) => {
         
         chrome.runtime.sendMessage({ action: 'speak', text, lang: 'fr-FR' });
     }
+
+    state.isDragging = false;
 })

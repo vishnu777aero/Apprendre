@@ -9,6 +9,9 @@ const state = {
     selectedText: "",
     targetLanguage: "",
     translatedText: "",
+    isDragging: false,
+    offsetX: 0.0,
+    offsetY: 0.0,
 };
 
 document.addEventListener('mouseup', async (event) => {
@@ -48,3 +51,18 @@ const findTargetLanguage = ({ detectedLanguage }) => {
         default: return "en";
     }
 }
+
+tooltip.addEventListener('mousedown', (event) => {
+  state.isDragging = true;
+  state.offsetX = event.clientX - tooltip.getBoundingClientRect().left;
+  state.offsetY = event.clientY - tooltip.getBoundingClientRect().top;
+});
+
+document.addEventListener('mousemove', (event) => {
+  if (state.isDragging) {
+    const newX = event.clientX - state.offsetX;
+    const newY = event.clientY - state.offsetY;
+    tooltip.style.left = newX + 'px';
+    tooltip.style.top = newY + 'px';
+  }
+});
