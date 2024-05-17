@@ -9,7 +9,7 @@ const logo = document.createElement('div');
 const logoUrl = chrome.runtime.getURL("icons/logo-32px.png");
 logo.style.backgroundImage = `url(${logoUrl})`;
 
-logo.classList.add('logo');
+logo.classList.add('apprendre-logo');
 
 const text = document.createElement('div');
 text.classList.add("apprendre-text");
