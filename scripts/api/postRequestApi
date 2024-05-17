@@ -1,40 +1,32 @@
 const detectLanguageApi = async (text) => {
-    return fetch("http://localhost:5000/detect", {
-	    method: "POST",
-	    body: JSON.stringify({
-		q: text,
-		api_key: ""
-	    }),
-	    headers: { "Content-Type": "application/json" }
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("translation error")
-        }
-    }).catch((e) => {
-        console.log(e);
-    });
+    const endPoint = 'detect';
+    const body = { q: text, api_key: "" };
+    const errorMessage = "language detection error";
+
+    return postRequestApi({ endPoint, body, errorMessage });
 }
 
 const translateApi = async ({ text, target }) => {
-    return fetch("http://localhost:5000/translate", {
-	method: "POST",
-	body: JSON.stringify({
-		q: text,
-		source: "auto",
-		target,
-		format: "text",
-		api_key: ""
-	}),
-	headers: { "Content-Type": "application/json" }
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("translation error")
-        }
-    }).catch((e) => {
-        console.log(e);
-    });
+    const endPoint = 'translate';
+    const body = { q: text, source: "auto", target, format: "text", api_key: "" };
+    const errorMessage = "translation error";
+
+    return postRequestApi({ endPoint, body, errorMessage });
+}
+
+const postRequestApi = async ({ endPoint, body, errorMessage }) => {
+    const method = "POST";
+    const headers = { "Content-Type": "application/json" };
+    const url = 'http://localhost:5000/' + endPoint;
+
+    return fetch(url, { method, body: JSON.stringify(body), headers })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            else {
+                throw new Error(errorMessage);
+            }
+        })
+        .catch(e => console.log(e));
 }
