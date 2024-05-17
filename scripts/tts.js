@@ -1,4 +1,4 @@
-tooltip.addEventListener('mouseup', (event) => {
+readTextButton.addEventListener('mouseup', (event) => {
     const { translatedText, selectedText, targetLanguage } = state;
 
     if ((translatedText !== '' && targetLanguage === 'fr') || (targetLanguage === 'en' && selectedText !== '')) {

@@ -14,8 +14,14 @@ logo.classList.add('logo');
 const text = document.createElement('div');
 text.classList.add("apprendre-text");
 
+const readTextButton = document.createElement('div');
+readTextButton.classList.add("apprendre-read-aloud-button");
+readTextButton.textContent = "🔊";
+
+
 tooltip.appendChild(logo);
 tooltip.appendChild(text);
+tooltip.appendChild(readTextButton);
 
 const state = {
     selectedText: "",
