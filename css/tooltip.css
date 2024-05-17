@@ -8,6 +8,30 @@ div#apprendre-tooltip {
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 9999;
-    cursor: pointer;
+    cursor: move;
     font-family: cursive;
+    box-sizing: border-box;
+    user-select: none;
+}
+  
+#apprendre-tooltip .apprendre-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+    background-size: cover;
+    top: 10px; 
+    left: 10px;
+}
+
+#apprendre-tooltip .apprendre-text {
+    display: flex;
+    align-items: center;
+    max-width: 50vw;
+}  
+
+#apprendre-tooltip .apprendre-read-aloud-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
 }

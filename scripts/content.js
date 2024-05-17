@@ -5,6 +5,24 @@ const tooltip = document.createElement('div');
 tooltip.id = tooltipId;
 document.body.appendChild(tooltip);
 
+const logo = document.createElement('div');
+const logoUrl = chrome.runtime.getURL("icons/logo-32px.png");
+logo.style.backgroundImage = `url(${logoUrl})`;
+
+logo.classList.add('apprendre-logo');
+
+const text = document.createElement('div');
+text.classList.add("apprendre-text");
+
+const readTextButton = document.createElement('div');
+readTextButton.classList.add("apprendre-read-aloud-button");
+readTextButton.textContent = "🔊";
+
+
+tooltip.appendChild(logo);
+tooltip.appendChild(text);
+tooltip.appendChild(readTextButton);
+
 const state = {
     selectedText: "",
     targetLanguage: "",
@@ -18,7 +36,7 @@ document.addEventListener('mouseup', async (event) => {
     const selectedText = window.getSelection().toString().trim();
     state.selectedText = selectedText;
     
-    if(selectedText !== '') {
+    if(selectedText !== '' && !state.isDragging) {
         const mouseX = event.pageX;
         const mouseY = event.pageY;
         
@@ -26,15 +44,17 @@ document.addEventListener('mouseup', async (event) => {
 
         tooltip.style.top = mouseY + 'px';
         tooltip.style.left = mouseX + 'px';
-        tooltip.style.display = 'block';
+        tooltip.style.display = 'flex';
 
         const detectionResponse = await detectLanguageApi(selectedText);
         state.targetLanguage = findTargetLanguage({ detectedLanguage: detectionResponse[0]?.language });
         const { targetLanguage } = state;
         const { translatedText } = await translateApi({ text: selectedText, target: targetLanguage });
         state.translatedText = translatedText;
-        tooltip.innerText = translatedText;
+        text.innerText = translatedText;
     }
+
+    state.isDragging = false;
 });
 
 document.addEventListener('mousedown', (event) => {
@@ -54,11 +74,12 @@ const findTargetLanguage = ({ detectedLanguage }) => {
 
 tooltip.addEventListener('mousedown', (event) => {
   state.isDragging = true;
-  state.offsetX = event.clientX - tooltip.getBoundingClientRect().left;
-  state.offsetY = event.clientY - tooltip.getBoundingClientRect().top;
+  state.offsetX = event.clientX - tooltip.getBoundingClientRect().left - window.scrollX;
+  state.offsetY = event.clientY - tooltip.getBoundingClientRect().top  - window.scrollY;
+  event.stopPropagation();
 });
 
-document.addEventListener('mousemove', (event) => {
+tooltip.addEventListener('mousemove', (event) => {
   if (state.isDragging) {
     const newX = event.clientX - state.offsetX;
     const newY = event.clientY - state.offsetY;

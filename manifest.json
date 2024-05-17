@@ -21,5 +21,11 @@
       "background": {
         "service_worker": "scripts/background.js"
       },
-      "permissions": ["activeTab", "tabs", "scripting", "tts"]
+      "permissions": ["activeTab", "tabs", "scripting", "tts"],
+      "web_accessible_resources": [{
+        "resources": ["icons/logo-32px.png"],
+        "matches": [
+          "*://*/*"
+        ]
+      }]
   }
