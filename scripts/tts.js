@@ -1,5 +1,4 @@
 tooltip.addEventListener('mouseup', (event) => {
-    event.stopPropagation();
     const { translatedText, selectedText, targetLanguage } = state;
 
     if ((translatedText !== '' && targetLanguage === 'fr') || (targetLanguage === 'en' && selectedText !== '')) {
@@ -7,6 +6,4 @@ tooltip.addEventListener('mouseup', (event) => {
         
         chrome.runtime.sendMessage({ action: 'speak', text, lang: 'fr-FR' });
     }
-
-    state.isDragging = false;
 })

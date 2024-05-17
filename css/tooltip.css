@@ -1,7 +1,7 @@
 div#apprendre-tooltip {
     display: none;
     position: absolute;
-    color: black !important;
+    color: green !important;
     background-color: #fff;
     border: 3px solid #cccccc;
     border-radius: 3px;
@@ -10,4 +10,21 @@ div#apprendre-tooltip {
     z-index: 9999;
     cursor: pointer;
     font-family: cursive;
+    box-sizing: border-box;
+    user-select: none;
 }
+  
+#apprendre-tooltip .logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+    background-size: cover;
+    top: 10px; 
+    left: 10px;
+}
+
+#apprendre-tooltip .apprendre-text {
+    display: flex;
+    align-items: center;
+    max-width: 50vw;
+}  
