@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Apprendre",
-    "description": "An extension that helps your learning Fraçais facile",
+    "description": "An extension that helps your learning Français facile",
     "version": "1.2",
     "icons": {
       "16": "icons/logo-16px.png",
